@@ -13,7 +13,7 @@ BCB = $(MAKEDIR)\..
 
 VERSION = BCB.04.04
 # ---------------------------------------------------------------------------
-PROJECT = $(BCB)\Projects\Bpl\TaeRichEditComponent.bpl
+PROJECT = OutputLib\TaeRichEditComponent.bpl
 OBJFILES = OBJ\TaeRichEditComponent.obj OBJ\TaeRichEdit.obj OBJ\TaeRichEditStrings.obj \
   OBJ\TaeAttrib.obj OBJ\TaeAttrib2.obj OBJ\TaeRichEditOleCallback.obj \
   OBJ\TaeRichEditOle.obj OBJ\TaeAdjLineBrks.obj OBJ\TaeRichEditPrint.obj \
@@ -44,7 +44,8 @@ PFLAGS = -U$(BCB)\lib\obj;$(BCB)\lib;$(RELEASELIBPATH) \
   -I$(BCB)\include;$(BCB)\include\vcl -N2OBJ -N0OBJ -$Y- -$L- -$D- -v -JPHNE -M
 RFLAGS = -i$(BCB)\include;$(BCB)\include\vcl
 AFLAGS = /i$(BCB)\include /i$(BCB)\include\vcl /mx /w2 /zn
-LFLAGS = -L$(BCB)\lib\obj;$(BCB)\lib;$(RELEASELIBPATH) -l$(BCB)\Projects\Bpl \
+LFLAGS = -L$(BCB)\lib\obj;$(BCB)\lib;$(RELEASELIBPATH) \
+  -l"C:\Users\Scott\Documents\Borland\Projects\TaeRichEdit\OutputLib\" \
   -D"TaeRichEdit Originally by Robert Dunn - Mods by Scott Swift" -aa -Tpp -x -Gn \
   -Gl -Gi
 # ---------------------------------------------------------------------------
@@ -100,20 +101,24 @@ Item0=OBJ
 Item1=$(BCB)\projects\taerichedit\OBJ
 
 [HistoryLists\hlFinalOutputDir]
-Count=6
-Item0=$(BCB)\Projects\Bpl\
-Item1=$(BCB)\Projects\BplItem1=$(BCB)\Projects\LIBItem1=$(BCB)\Projects\LIBItem1=OUTItem1=OUT
-Item2=
+Count=9
+Item0=C:\Users\Scott\Documents\Borland\Projects\TaeRichEdit\OutputLib
+Item1=$(BCB)\Projects\Bpl
+Item2=$(BCB)\Projects\BplItem1=$(BCB)\Projects\BplItem1=$(BCB)\Projects\BplItem1=$(BCB)\Projects\LIBItem1=$(BCB)\Projects\LIBItem1=OUTItem1=OUT
 Item3=
 Item4=
 Item5=
+Item6=
+Item7=
+Item8=
 
 [HistoryLists\hIBPIOutputDir]
-Count=4
-Item0=$(BCB)\Projects\Bpl
-Item1=$(BCB)\Projects\LIB
-Item2=$(BCB)\Projects\LIBItem1=..\LIB
-Item3=
+Count=5
+Item0=C:\Users\Scott\Documents\Borland\Projects\TaeRichEdit\OutputLib
+Item1=$(BCB)\Projects\Bpl
+Item2=$(BCB)\Projects\LIB
+Item3=$(BCB)\Projects\LIBItem1=..\LIB
+Item4=
 
 [Debugging]
 DebugSourceDirs=$(BCB)\source\vcl
