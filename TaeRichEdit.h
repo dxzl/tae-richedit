@@ -18,6 +18,12 @@
 #ifndef TaeRichEditH
 #define TaeRichEditH
 //---------------------------------------------------------------------------
+//Rich Edit version, DLL, Window Class:
+// 1.0 Riched32.dll RICHEDIT_CLASS
+// 2.0 Riched20.dll RICHEDIT_CLASS
+// 3.0 Riched20.dll RICHEDIT_CLASS
+// 4.1 Msftedit.dll MSFTEDIT_CLASS
+//
 // NOTE: The actual version is defined by using Options->Version tab prior
 // to building - then this info is stored in FRichEditVersionInfo
 // and we access that property with RichEditVersionInfo. S.S.

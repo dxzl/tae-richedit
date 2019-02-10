@@ -1321,59 +1321,6 @@ bool __fastcall TTaeRichEdit::FindTextEx(String text, int startPos,
                                                   foundPos, foundLength);
 }
 //---------------------------------------------------------------------------
-// note: GetTextLen() is not virtual in base -- not sure what happens if
-// you do not call this using a properly cast'd pointer to a TTaeRichEdit.
-// some of the VCL uses this method and I am not sure whether this version
-// actually gets called.
-//
-// S.S. 07/17/00: (It never gets called)
-///* Flags for the GETTEXTLENGTHEX data structure              */
-//#define GTL_DEFAULT    0  /* do the default (return # of chars)    */
-//#define GTL_USECRLF    1  /* compute answer using CRLFs for paragraphs*/
-//#define GTL_PRECISE    2  /* compute a precise answer          */
-//#define GTL_CLOSE     4  /* fast computation of a "close" answer    */
-//#define GTL_NUMCHARS  8  /* return the number of characters      */
-//#define GTL_NUMBYTES  16  /* return the number of _bytes_        */
-//
-// /* EM_GETTEXTLENGTHEX info; this struct is passed in the wparam of the msg */
-// typedef struct _gettextlengthex
-// {
-//  DWORD  flags;      /* flags (see GTL_XXX defines)        */
-//  UINT  codepage;    /* code page for translation (CP_ACP for default,
-//                 1200 for Unicode              */
-// } GETTEXTLENGTHEX;
-//
-// Note: to make GetTextLen() work, I had to call it like this:
-//  int iSize = static_cast<TTaeRichEdit*>(TaeRichEdit1)->GetTextLen();
-//
-
-//int __fastcall TTaeRichEdit::GetTextLen(void)
-//{
-//  GETTEXTLENGTHEX gtlx = { GTL_PRECISE, CP_ACP };
-//  return ::SendMessage(Handle, EM_GETTEXTLENGTHEX, (WPARAM) &gtlx, 0);
-//}
-
-// S.S. 07/17/00: Allow above flags to work
-// The old call will work as designed above, but the
-// caller can now specify flags to control how
-// GetTextLen() operates by our overloading of the function
-//
-// GTL_DEFAULT Returns the number of characters. This is the default (counts a cr/lf as one char! - S.S.).
-// GTL_USECRLF Computes the answer by using CR/LFs at the end of paragraphs.
-// GTL_PRECISE Computes a precise answer. This approach could necessitate a conversion and thereby take longer.
-//   This flag cannot be used with the GTL_CLOSE flag. E_INVALIDARG will be returned if both are used.
-// GTL_CLOSE Computes an approximate (close) answer. It is obtained quickly and can be used to set the buffer size.
-//   This flag cannot be used with the GTL_PRECISE flag. E_INVALIDARG will be returned if both are used.
-// GTL_NUMCHARS Returns the number of characters. This flag cannot be used with the GTL_NUMBYTES flag. E_INVALIDARG
-//   will be returned if both are used.
-// GTL_NUMBYTES Returns the number of bytes. This flag cannot be used with the GTL_NUMCHARS flag. E_INVALIDARG
-//   will be returned if both are used.
-//int __fastcall TTaeRichEdit::GetTextLen(DWORD flags)
-//{
-//  GETTEXTLENGTHEX gtlx = { flags, CP_ACP };
-//  return ::SendMessage(Handle, EM_GETTEXTLENGTHEX, (WPARAM) &gtlx, 0);
-//}
-//---------------------------------------------------------------------------
 // set the default font attributes
 //
 void __fastcall TTaeRichEdit::SetFont2(TFont2* font)
@@ -2317,14 +2264,72 @@ bool __fastcall TTaeRichEdit::InsertContainerObject(TOleContainer* obj,
   return FRichEditOle->InsertContainerObject(obj, fmt);
 }
 //---------------------------------------------------------------------------
+// note: GetTextLen() is not virtual in base -- not sure what happens if
+// you do not call this using a properly cast'd pointer to a TTaeRichEdit.
+// some of the VCL uses this method and I am not sure whether this version
+// actually gets called.
+//
+// S.S. 07/17/00: (It never gets called)
+///* Flags for the GETTEXTLENGTHEX data structure              */
+//#define GTL_DEFAULT    0  /* do the default (return # of chars)    */
+//#define GTL_USECRLF    1  /* compute answer using CRLFs for paragraphs*/
+//#define GTL_PRECISE    2  /* compute a precise answer          */
+//#define GTL_CLOSE     4  /* fast computation of a "close" answer    */
+//#define GTL_NUMCHARS  8  /* return the number of characters      */
+//#define GTL_NUMBYTES  16  /* return the number of _bytes_        */
+//
+// /* EM_GETTEXTLENGTHEX info; this struct is passed in the wparam of the msg */
+// typedef struct _gettextlengthex
+// {
+//  DWORD  flags;      /* flags (see GTL_XXX defines)        */
+//  UINT  codepage;    /* code page for translation (CP_ACP for default,
+//                 1200 for Unicode              */
+// } GETTEXTLENGTHEX;
+//
+// Note: to make GetTextLen() work, I had to call it like this:
+//  int iSize = static_cast<TTaeRichEdit*>(TaeRichEdit1)->GetTextLen();
+//
+
+//int __fastcall TTaeRichEdit::GetTextLen(void)
+//{
+//  GETTEXTLENGTHEX gtlx = { GTL_PRECISE, CP_ACP };
+//  return ::SendMessage(Handle, EM_GETTEXTLENGTHEX, (WPARAM) &gtlx, 0);
+//}
+
+// S.S. 07/17/00: Allow above flags to work
+// The old call will work as designed above, but the
+// caller can now specify flags to control how
+// GetTextLen() operates by our overloading of the function
+//
+// GTL_DEFAULT Returns the number of characters. This is the default (counts a cr/lf as one char! - S.S.).
+// GTL_USECRLF Computes the answer by using CR/LFs at the end of paragraphs.
+// GTL_PRECISE Computes a precise answer. This approach could necessitate a conversion and thereby take longer.
+//   This flag cannot be used with the GTL_CLOSE flag. E_INVALIDARG will be returned if both are used.
+// GTL_CLOSE Computes an approximate (close) answer. It is obtained quickly and can be used to set the buffer size.
+//   This flag cannot be used with the GTL_PRECISE flag. E_INVALIDARG will be returned if both are used.
+// GTL_NUMCHARS Returns the number of characters. This flag cannot be used with the GTL_NUMBYTES flag. E_INVALIDARG
+//   will be returned if both are used.
+// GTL_NUMBYTES Returns the number of bytes. This flag cannot be used with the GTL_NUMCHARS flag. E_INVALIDARG
+//   will be returned if both are used.
+//int __fastcall TTaeRichEdit::GetTextLen(DWORD flags)
+//{
+//  GETTEXTLENGTHEX gtlx = { flags, CP_ACP };
+//  return ::SendMessage(Handle, EM_GETTEXTLENGTHEX, (WPARAM) &gtlx, 0);
+//}
+//---------------------------------------------------------------------------
 // S.S. Added 5/28/15
 //
 //---------------------------------------------------------------------------
 // This counts cr/lfs as 2 chars each! (SelStart and SelLength count newlines
 // as 1 char)
+//long __fastcall TTaeRichEdit::GetTextLength(void)
+//{
+//  return ::SendMessageW(Handle, WM_GETTEXTLENGTH, 0, 0);
+//}
 long __fastcall TTaeRichEdit::GetTextLength(void)
 {
-  return ::SendMessageW(Handle, WM_GETTEXTLENGTH, 0, 0);
+  GETTEXTLENGTHEX gtlx = { GTL_DEFAULT, 1200 }; // Unicode
+  return ::SendMessage(Handle, EM_GETTEXTLENGTHEX, (WPARAM) &gtlx, 0);
 }
 //---------------------------------------------------------------------------
 // S.S. Added 5/28/15

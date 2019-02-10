@@ -38,16 +38,16 @@ RELEASELIBPATH = $(BCB)\lib\release
 USERDEFINES =
 SYSDEFINES = _RTLDLL;NO_STRICT;USEPACKAGES
 # ---------------------------------------------------------------------------
-CFLAG1 = -I$(BCB)\include;$(BCB)\include\vcl -O2 -Hc -H=$(BCB)\lib\vcl40.csm -w -Ve -a8 \
-  -5 -k- -vi -c -b- -w-par -w-inl -Vx -tWM -D$(SYSDEFINES);$(USERDEFINES)
+CFLAG1 = -I$(BCB)\include;$(BCB)\include\vcl -Od -Hc -H=$(BCB)\lib\vcl40.csm -w -Ve -r- \
+  -a8 -5 -k -y -v -vi- -c -b- -w-par -w-inl -Vx -tWM -D$(SYSDEFINES);$(USERDEFINES)
 PFLAGS = -U$(BCB)\lib\obj;$(BCB)\lib;$(RELEASELIBPATH) \
-  -I$(BCB)\include;$(BCB)\include\vcl -N2OBJ -N0OBJ -$Y- -$L- -$D- -v -JPHNE -M
+  -I$(BCB)\include;$(BCB)\include\vcl -N2OBJ -N0OBJ -$Y+ -$W -$O- -v -JPHNE -M
 RFLAGS = -i$(BCB)\include;$(BCB)\include\vcl
-AFLAGS = /i$(BCB)\include /i$(BCB)\include\vcl /mx /w2 /zn
+AFLAGS = /i$(BCB)\include /i$(BCB)\include\vcl /mx /w2 /zi
 LFLAGS = -L$(BCB)\lib\obj;$(BCB)\lib;$(RELEASELIBPATH) \
   -l"C:\Users\Scott\Documents\Borland\Projects\TaeRichEdit\OutputLib\" \
   -D"TaeRichEdit Originally by Robert Dunn - Mods by Scott Swift" -aa -Tpp -x -Gn \
-  -Gl -Gi
+  -Gl -Gi -v
 # ---------------------------------------------------------------------------
 ALLOBJ = c0pkg32.obj Memmgr.Lib $(PACKAGES) sysinit.obj $(OBJFILES)
 ALLRES = $(RESFILES)
@@ -59,7 +59,7 @@ ALLLIB = $(LIBFILES) $(LIBRARIES) import32.lib cp32mti.lib
 IncludeVerInfo=1
 AutoIncBuild=0
 MajorVer=1
-MinorVer=4
+MinorVer=5
 Release=0
 Build=0
 Debug=0
@@ -73,14 +73,17 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=
 FileDescription=
-FileVersion=1.4.0.0
+FileVersion=1.5.0.0
 InternalName=
 LegalCopyright=
 LegalTrademarks=
 OriginalFilename=
 ProductName=
-ProductVersion=1.4.0.0
+ProductVersion=1.5.0.0
 Comments=
+
+[Excluded Packages]
+$(BCB)\Projects\Bpl\YcEditPackage.bpl=YahCoLoRiZe Rich-Edit Control
 
 [HistoryLists\hlIncludePath]
 Count=2
@@ -101,24 +104,26 @@ Item0=OBJ
 Item1=$(BCB)\projects\taerichedit\OBJ
 
 [HistoryLists\hlFinalOutputDir]
-Count=9
-Item0=C:\Users\Scott\Documents\Borland\Projects\TaeRichEdit\OutputLib
-Item1=$(BCB)\Projects\Bpl
-Item2=$(BCB)\Projects\BplItem1=$(BCB)\Projects\BplItem1=$(BCB)\Projects\BplItem1=$(BCB)\Projects\LIBItem1=$(BCB)\Projects\LIBItem1=OUTItem1=OUT
-Item3=
+Count=10
+Item0=OutputLib\
+Item1=C:\Users\Scott\Documents\Borland\Projects\TaeRichEdit\OutputLib
+Item2=$(BCB)\Projects\Bpl
+Item3=$(BCB)\Projects\BplItem1=$(BCB)\Projects\BplItem1=$(BCB)\Projects\BplItem1=$(BCB)\Projects\LIBItem1=$(BCB)\Projects\LIBItem1=OUTItem1=OUT
 Item4=
 Item5=
 Item6=
 Item7=
 Item8=
+Item9=
 
 [HistoryLists\hIBPIOutputDir]
-Count=5
-Item0=C:\Users\Scott\Documents\Borland\Projects\TaeRichEdit\OutputLib
-Item1=$(BCB)\Projects\Bpl
-Item2=$(BCB)\Projects\LIB
-Item3=$(BCB)\Projects\LIBItem1=..\LIB
-Item4=
+Count=6
+Item0=C:\Users\Scott\Documents\Borland\Projects\TaeRichEdit\OutputLib\
+Item1=C:\Users\Scott\Documents\Borland\Projects\TaeRichEdit\OutputLib
+Item2=$(BCB)\Projects\Bpl
+Item3=$(BCB)\Projects\LIB
+Item4=$(BCB)\Projects\LIBItem1=..\LIB
+Item5=
 
 [Debugging]
 DebugSourceDirs=$(BCB)\source\vcl
